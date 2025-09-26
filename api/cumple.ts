@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 
 // Mapa de códigos a URLs destino
-const urlMap = {
+const urlMap: Record<string, string> = {
   '1': 'https://shorturl.at/P8oKi',
   '2': 'https://drive.google.com/imagen2',
   '3': 'https://tu_otro_destino.com',
