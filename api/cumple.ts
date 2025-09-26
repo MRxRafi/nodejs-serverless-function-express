@@ -15,11 +15,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     text: `Test push desde Vercel`
   };
   try {
-    await fetch(SLACK_WEBHOOK_URL, {
+    const response = await fetch(SLACK_WEBHOOK_URL, {
       method: 'POST',
       body: JSON.stringify(message),
       headers: { 'Content-Type': 'application/json' }
     });
+    console.log('Respuesta webhook Slack:', response.status, await response.text());
   } catch (error) {
     console.error('Error enviando notificación a Slack:', error);
   }
