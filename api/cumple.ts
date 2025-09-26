@@ -1,0 +1,46 @@
+import type { VercelRequest, VercelResponse } from '@vercel/node'
+
+// Mapa de códigos a URLs destino
+const urlMap = {
+  '1': 'https://shorturl.at/P8oKi',
+  '2': 'https://drive.google.com/imagen2',
+  '3': 'https://tu_otro_destino.com',
+};
+
+const SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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';
+
+export default function handler(req: VercelRequest, res: VercelResponse) {
+  // Enviar notificación Slack
+  const message = {
+    text: `Test push ${req.query} desde IP: ${req.headers['x-forwarded-for'] || req.connection.remoteAddress}`
+  };
+  try {
+    await fetch(SLACK_WEBHOOK_URL, {
+      method: 'POST',
+      body: JSON.stringify(message),
+      headers: { 'Content-Type': 'application/json' }
+    });
+  } catch (error) {
+    console.error('Error enviando notificación a Slack:', error);
+  }
+  
+  return res.json({
+    message: req.query,
+  })
+}
+/*
+// Perplexity
+const fetch = require('node-fetch'); // Vercel ya lo soporta, si no, instalar
+
+module.exports = async (req, res) => {
+  const code = req.query.code;
+
+  if (!code || !urlMap[code]) {
+    res.status(400).send('Código no válido');
+    return;
+  }
+
+  // Redirigir a la URL correspondiente
+  res.writeHead(302, { Location: urlMap[code] });
+  res.end();
+};*/
