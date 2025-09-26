@@ -7,7 +7,7 @@ const urlMap: Record<string, string> = {
   '3': 'https://tu_otro_destino.com',
 };
 
-const SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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';
+const SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Enviar notificación Slack
