@@ -9,7 +9,7 @@ const urlMap = {
 
 const SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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';
 
-export default function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Enviar notificación Slack
   const message = {
     text: `Test push ${req.query} desde IP: ${req.headers['x-forwarded-for'] || req.connection.remoteAddress}`
