@@ -10,9 +10,10 @@ const urlMap: Record<string, string> = {
 const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL;
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  const id = req.query.id;
   // Enviar notificación Slack
   const message = {
-    text: `Test push desde Vercel, imagen escogida: ${req.query.id}`
+    text: `Test push desde Vercel, imagen escogida: ${id}`
   };
   try {
     const response = await fetch(SLACK_WEBHOOK_URL, {
@@ -26,7 +27,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
   
   // Redirigir a la URL correspondiente
-  res.writeHead(302, { Location: urlMap[code] });
+  res.writeHead(302, { Location: urlMap[id] });
   res.end();
 }
 /*
