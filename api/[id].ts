@@ -12,7 +12,7 @@ const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL;
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Enviar notificación Slack
   const message = {
-    text: `Test push desde Vercel`
+    text: `Test push desde Vercel, imagen escogida: ${req.query.id}`
   };
   try {
     const response = await fetch(SLACK_WEBHOOK_URL, {
