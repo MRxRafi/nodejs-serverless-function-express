@@ -25,9 +25,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     console.error('Error enviando notificación a Slack:', error);
   }
   
-  return res.json({
-    message: req.query,
-  })
+  // Redirigir a la URL correspondiente
+  res.writeHead(302, { Location: urlMap[code] });
+  res.end();
 }
 /*
 // Perplexity
@@ -41,7 +41,5 @@ module.exports = async (req, res) => {
     return;
   }
 
-  // Redirigir a la URL correspondiente
-  res.writeHead(302, { Location: urlMap[code] });
-  res.end();
+  
 };*/
